@@ -53,7 +53,7 @@ class Main{
     probarPedido(){
         let elemento = new ElementoPedido(new Producto("Pizza Hawaiana", new Precio (600.50)), 2)
         this.pedido1.agregarElemento(elemento)
-        console.log(this.pedido1.listarElementos())
+        this.pedido1.listarElementos()
     }
     probarRest(){
         let producto1 = new Producto("Pizza Hawaiana", new Precio(600.50))
