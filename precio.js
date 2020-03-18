@@ -4,9 +4,9 @@ export default class Precio{
      * @param {number} valor 
      */
     constructor(valor){
-        this.valor = valor
+        this._valor = valor
     }
     getPrecios(){
-        return `$${new Intl.NumberFormat("en-UA").format(this.valor)}`
+        return `$${new Intl.NumberFormat("en-UA").format(this._valor)}`
     }
 }
