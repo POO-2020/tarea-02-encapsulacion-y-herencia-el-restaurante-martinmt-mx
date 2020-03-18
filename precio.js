@@ -9,4 +9,7 @@ export default class Precio{
     getPrecios(){
         return `$${new Intl.NumberFormat("en-UA").format(this._valor)}`
     }
+    _getValor(){
+        return this._valor
+    }
 }

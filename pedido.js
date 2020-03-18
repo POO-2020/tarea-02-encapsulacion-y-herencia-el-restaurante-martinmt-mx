@@ -36,7 +36,7 @@ export default class Pedido{
     }
     getCostoTotal(){
         let i = 0
-        this.elementosPedido.forEach(elementoPedido => {i = (elementoPedido.cantidad * elementoPedido.producto.precio.valor) + i})
+        this.elementosPedido.forEach(elementoPedido => {i = (elementoPedido.cantidad * elementoPedido._getProductoPrecioValor()) + i})
         return `$${new Intl.NumberFormat("en-US").format(i)}`
     }
     
