@@ -7,10 +7,14 @@ import ElementoPedido from "./elementoPedido.js"
 import Cliente from "./cliente.js"
 import Pedido from "./pedido.js"
 import Restaurante from "./restaurante.js"
+import ClienteFrecuente from "./clienteFrecuente.js"
 class Main{
     constructor(){
-        this.pedido1 = new Pedido(new Fecha(3,4,2021), new Tiempo(5,30,"pm"), new Cliente("Martin Mojica Torres", new Direccion("Benito Juarez", 152, 0, "Centro", 22442, "Colima", "Colima"), 3122739451))
-        this.restaurante = new Restaurante("OXXO", 3128889900, new Direccion("Benito Juarez", 152, 0, "Centro", 22442, "Colima", "Colima"))
+        let datosCliente1 = {nombre: "Martin Mojica Torres", direccion: new Direccion("calle 13", 13, 3, "Colonia Alta", 32133, "Ciudad", "Municipio"), telefono: 3122739451}
+        let datosPedido1 = {numeroPedido: 1, fecha: new Fecha(3,4,2021), hora: new Tiempo(5,30,"pm"), cliente: new Cliente(datosCliente1)}
+        this.pedido1 = new Pedido(datosPedido1)
+        let datosRestaurante = {nombre: "OXXO", telefono: 3128889900, direccion: new Direccion("Benito Juarez", 152, 0, "Centro", 22442, "Colima", "Colima")}
+        this.restaurante = new Restaurante(datosRestaurante)
     }
     probarFecha(){
         let fecha1 = new Fecha(12,4,2022)
@@ -25,6 +29,15 @@ class Main{
         let tiempo = new Tiempo(11, 32, "pm")
         console.log(tiempo.getFormato12())
         console.log(tiempo.getFormato24())
+    }
+    probarClienteFrecuente() {
+        let datosCliente1 = {nombre: "Martin Mojica Torres", 
+            direccion: new Direccion("Benito Juarez", 152, 0, "Centro", 22442, "Colima", "Colima"), 
+            telefono: 3122739451,
+            numero: 2,
+            fecha: new Fecha(7,3,2018)}
+        let cliente = new ClienteFrecuente(datosCliente1)
+        console.log(cliente.getPerfil())
     }
     probarDireccion(){
         let direc1 = new Direccion("Benito Juarez", 152, 0, "Centro", 22442, "Colima", "Colima")
@@ -47,7 +60,8 @@ class Main{
         console.log(pedido1.getDescripcion())
     }
     probarCliente(){
-        let cliente = new Cliente("Martin Mojica Torres", new Direccion("Benito Juarez", 152, 0, "Centro", 22442, "Colima", "Colima"), 3122739451)
+        let datosCliente1 = {nombre: "Martin Mojica Torres", direccion: new Direccion("Benito Juarez", 152, 0, "Centro", 22442, "Colima", "Colima"), telefono: 3122739451}
+        let cliente = new Cliente(datosCliente1)
         console.log(cliente.getPerfil())
     }
     probarPedido(){
@@ -61,12 +75,24 @@ class Main{
         this.restaurante.registrarProducto(producto1)
         this.restaurante.registrarProducto(producto2)
         this.restaurante.listarProductos()
-        let pedido = new Pedido(new Fecha(3,4,2021), new Tiempo(5,30,"pm"), new Cliente("Martin Mojica Torres", new Direccion("Benito Juarez", 152, 0, "Centro", 22442, "Colima", "Colima"), 3122739451))
+        let datosCliente1 = {nombre: "Martin Mojica Torres", direccion: new Direccion("Benito Juarez", 152, 0, "Centro", 22442, "Colima", "Colima"), telefono: 3122739451}
+        let datosPedido1 = {numeroPedido: 1, fecha: new Fecha(3,4,2021), hora: new Tiempo(5,30,"pm"), cliente: new Cliente(datosCliente1)}
+        let pedido1 = new Pedido(datosPedido1)
         let elemento1 = new ElementoPedido(new Producto("Pizza Hawaiana", new Precio(600.50)), 3)
         let elemento2 = new ElementoPedido(new Producto("Pizza Mexicana", new Precio(700)), 5)
-        pedido.agregarElemento(elemento1)
-        pedido.agregarElemento(elemento2)
-        this.restaurante.registrarPedido(pedido)
+        pedido1.agregarElemento(elemento1)
+        this.restaurante.registrarPedido(pedido1)
+        let datosCliente2 = {nombre: "Martin Mojica Torres", direccion: new Direccion("Benito Juarez", 152, 0, "Centro", 22442, "Colima", "Colima"), telefono: 3122739451}
+        let datosPedido2 = {numeroPedido: 2, fecha: new Fecha(3,4,2021), hora: new Tiempo(5,30,"pm"), cliente: new Cliente(datosCliente2)}
+        let pedido2 = new Pedido(datosPedido2)
+        pedido2.agregarElemento(elemento1)
+        pedido2.agregarElemento(elemento2)
+        
+        this.restaurante.registrarPedido(pedido2)
+        this.restaurante.listarPedidos()
+        this.restaurante.eliminarPedido(pedido1)
+        this.restaurante.listarPedidos()
+        this.restaurante.actualizarPedido(pedido2, pedido1)
         this.restaurante.listarPedidos()
     }
 }
@@ -80,3 +106,4 @@ app.probarElementoPedido()
 app.probarCliente()
 app.probarPedido()
 app.probarRest()
+app.probarClienteFrecuente()

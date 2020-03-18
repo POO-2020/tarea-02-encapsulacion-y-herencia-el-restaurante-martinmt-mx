@@ -6,15 +6,18 @@ export default class ElementoPedido{
      * @param {number} cantidad 
      */
     constructor(producto, cantidad){
-        this.producto = producto
-        this.cantidad = cantidad
+        this._producto = producto
+        this._cantidad = cantidad
     }
     _getProductoPrecioValor(){
-        return this.producto._getPrecioValor()
+        return this._producto._getPrecioValor()
+    }
+    _getCantidad(){
+        return this._cantidad
     }
     getDescripcion(){
-        let precioFinal = this.cantidad * this.producto._getPrecioValor()
-        return `${this.cantidad} x ${this.producto._getNombre()} $${new Intl.NumberFormat("en-US").format(precioFinal)}`
+        let precioFinal = this._cantidad * this._producto._getPrecioValor()
+        return `${this._cantidad} x ${this._producto._getNombre()} $${new Intl.NumberFormat("en-US").format(precioFinal)}`
     }
     
 }

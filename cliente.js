@@ -4,15 +4,15 @@ export default class Cliente{
     /**
      * 
      * @param {string} nombre 
-     * @param {Direccion} dirección
+     * @param {Direccion} direccion
      * @param {number} telefono 
      */
-    constructor(nombre, dirección, telefono){
-        this.nombre = nombre
-        this.dirección = dirección
-        this.telefono = telefono
+    constructor({nombre, direccion, telefono}){
+        this._nombre = nombre
+        this._direccion = direccion
+        this._telefono = telefono
     }
     getPerfil(){
-        return `${this.nombre}, ${this.dirección.getFormatoCorto()}, ${this.telefono}`
+        return `${this._nombre}, ${this._direccion.getFormatoCorto()}, ${this._telefono}`
     }
 }
